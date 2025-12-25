@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>অ্যাডমিন প্যানেল</title>
+    <style>
+        :root {
+            --main-bg: #f0f2f5;
+            --sidebar-bg: #1c2331;
+            --header-bg: #fff;
+            --card-bg: #fff;
+            --text-light: #aab2bd;
+            --text-dark: #333;
+            --accent-color: #007bff;
+        }
+        body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background-color: var(--main-bg); }
+        .admin-wrapper { display: flex; }
+        .sidebar { width: 220px; background-color: var(--sidebar-bg); color: white; min-height: 100vh; position: fixed; left: -220px; transition: left 0.3s ease; z-index: 1001; }
+        .sidebar.open { left: 0; }
+        .sidebar-header { padding: 20px; text-align: center; font-size: 24px; font-weight: bold; border-bottom: 1px solid #343a40; }
+        .sidebar-menu a { display: block; padding: 15px 20px; color: var(--text-light); text-decoration: none; border-left: 3px solid transparent; transition: 0.3s; }
+        .sidebar-menu a:hover, .sidebar-menu a.active { background-color: #343a40; color: white; border-left-color: var(--accent-color); }
+        .main-content { width: 100%; transition: margin-left 0.3s ease; }
+        .header { background-color: var(--header-bg); padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .menu-toggle { font-size: 24px; cursor: pointer; display: block; }
+        .logout-btn { background-color: #dc3545; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; }
+        .content { padding: 20px; }
+        .page { display: none; }
+        .page.active { display: block; }
+        .stat-cards { display: grid; grid-template-columns: 1fr; gap: 20px; }
+        .card { background-color: var(--card-bg); padding: 25px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.08); }
+        .card h3 { margin-top: 0; }
+        .card .stat-number { font-size: 36px; font-weight: bold; color: var(--accent-color); }
+        .admin-section { background: white; padding: 20px; margin-top: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        h2 { border-bottom: 2px solid #eee; padding-bottom: 10px; margin-top: 0; }
+        label { display: block; margin-top: 15px; font-weight: 600; }
+        input, select, textarea { width: 100%; padding: 12px; margin-top: 5px; border: 1px solid #ccc; border-radius: 5px; font-size: 16px; box-sizing: border-box; }
+        button { background-color: var(--accent-color); color: white; border: none; padding: 12px 18px; border-radius: 5px; cursor: pointer; margin-top: 20px; font-size: 16px; width: 100%; }
+        .list-item { display: flex; flex-direction: column; align-items: flex-start; padding: 10px; border-bottom: 1px solid #eee; gap: 10px; }
+        .list-item > span { font-weight: bold; word-break: break-all; }
+        .list-item div { display: flex; gap: 10px; width: 100%; }
+        .list-item select { width: auto; flex-grow: 1; }
+        .delete-btn, .block-btn { padding: 8px 12px; font-size: 14px; margin: 0; width: auto; }
+        .delete-btn { background-color: #c82333; }
+        .block-btn { background-color: #ffc107; color: #333; }
+        .block-btn.unblock { background-color: #28a745; color: white; }
+        .add-btn { background-color: #28a745; }
+        #auth-container { height: 100vh; display: flex; justify-content: center; align-items: center; background-color: var(--sidebar-bg); }
+        #loginCard { width: 90%; max-width: 350px; }
+        @media (min-width: 768px) { .sidebar { left: 0; } .main-content { margin-left: 220px; width: calc(100% - 220px); } .menu-toggle { display: none; } .stat-cards { grid-template-columns: repeat(3, 1fr); } .list-item { flex-direction: row; align-items: center; } .list-item div { width: auto; } button { width: auto; } }
+    </style>
+</head>
+<body>
+
+    <div id="auth-container">
+        <div id="loginCard" class="card">
+            <h2>অ্যাডমিন লগইন</h2>
+            <form id="loginForm">
+                <label for="email">Email:</label><input type="email" id="email" required>
+                <label for="password">Password:</label><input type="password" id="password" required>
+                <button type="submit">লগইন করুন</button>
+            </form>
+        </div>
+    </div>
+    
+    <div id="admin-wrapper" class="admin-wrapper" style="display: none;">
+        <div class="sidebar">
+            <div class="sidebar-header">অ্যাডমিন</div>
+            <div class="sidebar-menu">
+                <a href="#" onclick="showPage('dashboardPage')" class="active">ড্যাশবোর্ড</a>
+                <a href="#" onclick="showPage('settingsPage')">সাইট সেটিংস</a>
+                <a href="#" onclick="showPage('categoriesPage')">ক্যাটাগরি</a>
+                <a href="#" onclick="showPage('productsPage')">পণ্য</a>
+                <a href="#" onclick="showPage('ordersPage')">অর্ডার</a>
+                <a href="#" onclick="showPage('usersPage')">ব্যবহারকারী</a>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="header">
+                <span class="menu-toggle" onclick="toggleSidebar()">&#9776;</span>
+                <h2 id="pageTitle">ড্যাশবোর্ড</h2>
+                <button id="logoutBtn" class="logout-btn">লগআউট</button>
+            </div>
+            <div class="content">
+                <div id="dashboardPage" class="page active">
+                    <div class="stat-cards">
+                        <div class="card"><h3>মোট ব্যবহারকারী</h3><p id="totalUsers" class="stat-number">0</p></div>
+                        <div class="card"><h3>মোট পণ্য</h3><p id="totalProducts" class="stat-number">0</p></div>
+                        <div class="card"><h3>মোট অর্ডার</h3><p id="totalOrders" class="stat-number">0</p></div>
+                    </div>
+                </div>
+
+                <div id="settingsPage" class="page">
+                    <div class="admin-section">
+                        <h2>সাধারণ সেটিংস</h2>
+                        <label>সাইটের নাম:</label><input type="text" id="siteName" placeholder="e.g., Daraz">
+                        <label>সাইটের লোগো URL:</label><input type="text" id="siteLogoUrl" placeholder="লোগো ছবির লিংক দিন">
+                        <button onclick="saveGeneralSettings()">সাধারণ সেটিংস সেভ করুন</button>
+                    </div>
+
+                    <div class="admin-section">
+                        <h2>যোগাযোগের তথ্য</h2>
+                        <label>টেলিগ্রাম লিংক:</label><input type="text" id="telegramLink" placeholder="Telegram Profile/Channel Link">
+                        <label>টেলিগ্রাম আইকন URL:</label><input type="text" id="telegramIconUrl" placeholder="Telegram আইকনের ছবির লিংক">
+
+                        <label>হোয়াটসঅ্যাপ লিংক (wa.me/ সহ):</label><input type="text" id="whatsappLink" placeholder="wa.me/880...">
+                        <label>হোয়াটসঅ্যাপ আইকন URL:</label><input type="text" id="whatsappIconUrl" placeholder="WhatsApp আইকনের ছবির লিংক">
+                        
+                        <label>ফেসবুক পেজ লিংক:</label><input type="text" id="facebookLink" placeholder="Facebook Page Link">
+                        <label>ফেসবুক আইকন URL:</label><input type="text" id="facebookIconUrl" placeholder="Facebook আইকনের ছবির লিংক">
+
+                        <label>টিকটক লিংক:</label><input type="text" id="tiktokLink" placeholder="TikTok Profile Link">
+                        <label>টিকটক আইকন URL:</label><input type="text" id="tiktokIconUrl" placeholder="TikTok আইকনের ছবির লিংক">
+
+                        <label>ইউটিউব চ্যানেল লিংক:</label><input type="text" id="youtubeLink" placeholder="YouTube Channel Link">
+                        <label>ইউটিউব আইকন URL:</label><input type="text" id="youtubeIconUrl" placeholder="YouTube আইকনের ছবির লিংক">
+                        
+                        <label>ফোন নম্বর:</label><input type="text" id="contactPhone" placeholder="017...">
+                        <label>ফোন আইকন URL:</label><input type="text" id="phoneIconUrl" placeholder="Phone আইকনের ছবির লিংক">
+                        
+                        <label>ইমেইল:</label><input type="text" id="contactEmail" placeholder="example@gmail.com">
+                        <label>ইমেইল আইকন URL:</label><input type="text" id="emailIconUrl" placeholder="Email আইকনের ছবির লিংক">
+
+                        <button onclick="saveContactSettings()">যোগাযোগের তথ্য সেভ করুন</button>
+                    </div>
+
+                    <div class="admin-section">
+                        <h2>ব্যানার ম্যানেজমেন্ট</h2>
+                        <label for="newBannerUrl">নতুন ব্যানার URL:</label>
+                        <input type="text" id="newBannerUrl" placeholder="এখানে নতুন ব্যানারের ছবির লিংক দিন">
+                        <button class="add-btn" onclick="addBanner()">ব্যানার যোগ করুন</button>
+                        <h3 style="margin-top: 30px;">বর্তমান ব্যানারসমূহ</h3>
+                        <div id="banner-list"></div>
+                    </div>
+                </div>
+                
+                <div id="categoriesPage" class="page">
+                    <div class="admin-section">
+                        <h2>নতুন ক্যাটাগরি</h2>
+                        <input type="text" id="categoryName" placeholder="ক্যাটাগরির নাম"><input type="text" id="categoryImageUrl" placeholder="ক্যাটাগরির ছবি URL">
+                        <button onclick="addCategory()">যোগ করুন</button>
+                        <h3 style="margin-top: 30px;">সকল ক্যাটাগরি</h3><div id="category-list"></div>
+                    </div>
+                </div>
+                <div id="productsPage" class="page">
+                    <div class="admin-section">
+                        <h2>নতুন পণ্য</h2>
+                        <form id="productForm">
+                            <input type="text" id="productName" placeholder="পণ্যের নাম" required>
+                            <select id="productCategory" required></select>
+                            <input type="number" id="productPrice" placeholder="বর্তমান মূল্য (৳)" required>
+                            <input type="number" id="oldPrice" placeholder="পূর্বের মূল্য (৳)">
+                            <input type="number" id="discount" placeholder="ডিসকাউন্ট %">
+                            <input type="text" id="imageUrl" placeholder="ছবি URL" required>
+                            <input type="text" id="productLink" placeholder="পণ্যের লিংক (ঐচ্ছিক)">
+                            <button type="submit">যোগ করুন</button>
+                        </form>
+                        <h3 style="margin-top: 30px;">সকল পণ্য</h3><div id="product-list"></div>
+                    </div>
+                </div>
+                <div id="ordersPage" class="page">
+                    <div class="admin-section">
+                        <h2>সকল অর্ডার</h2><div id="order-list"></div>
+                    </div>
+                </div>
+                <div id="usersPage" class="page">
+                    <div class="admin-section">
+                        <h2>সকল ব্যবহারকারী</h2><div id="user-list"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-firestore.js"></script>
+
+    <script>
+        const firebaseConfig = { apiKey: "AIzaSyAu3_ZYZXMStF9yZvVip2upsUGYucaH01s", authDomain: "my-website-ccbd8.firebaseapp.com", projectId: "my-website-ccbd8", storageBucket: "my-website-ccbd8.appspot.com", messagingSenderId: "681649523272", appId: "1:681649523272:web:3dcf1d8300a7efe2de267d" };
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        const authContainer = document.getElementById('auth-container');
+        const adminWrapper = document.getElementById('admin-wrapper');
+        const pageTitle = document.getElementById('pageTitle');
+
+        function toggleSidebar() { document.querySelector('.sidebar').classList.toggle('open'); }
+        function showPage(pageId) { document.querySelectorAll('.page').forEach(p => p.classList.remove('active')); document.getElementById(pageId).classList.add('active'); document.querySelectorAll('.sidebar-menu a').forEach(a => a.classList.remove('active')); document.querySelector(`.sidebar-menu a[onclick="showPage('${pageId}')"]`).classList.add('active'); pageTitle.innerText = document.querySelector(`.sidebar-menu a.active`).innerText; if(window.innerWidth < 768) { toggleSidebar(); } }
+        auth.onAuthStateChanged(user => { if(user) { authContainer.style.display = 'none'; adminWrapper.style.display = 'flex'; loadAllAdminData(); } else { authContainer.style.display = 'flex'; adminWrapper.style.display = 'none'; } });
+        document.getElementById('loginForm').addEventListener('submit', e => { e.preventDefault(); auth.signInWithEmailAndPassword(document.getElementById('email').value, document.getElementById('password').value).catch(err => alert(err.message)); });
+        document.getElementById('logoutBtn').addEventListener('click', () => auth.signOut());
+        function loadAllAdminData() { loadDashboardStats(); loadSettings(); loadCategories(); loadProducts(); loadOrders(); loadUsers(); }
+        function loadDashboardStats() { db.collection('users').onSnapshot(snap => document.getElementById('totalUsers').innerText = snap.size); db.collection('products').onSnapshot(snap => document.getElementById('totalProducts').innerText = snap.size); db.collection('orders').onSnapshot(snap => document.getElementById('totalOrders').innerText = snap.size); }
+
+        function saveGeneralSettings() {
+            const settingsData = {
+                siteName: document.getElementById('siteName').value,
+                siteLogoUrl: document.getElementById('siteLogoUrl').value,
+            };
+            db.collection('settings').doc('siteInfo').set(settingsData, { merge: true }).then(() => alert('সাধারণ সেটিংস সেভ হয়েছে!'));
+        }
+
+        function saveContactSettings() {
+            const contactData = {
+                telegram: document.getElementById('telegramLink').value,
+                telegramIconUrl: document.getElementById('telegramIconUrl').value,
+                whatsapp: document.getElementById('whatsappLink').value,
+                whatsappIconUrl: document.getElementById('whatsappIconUrl').value,
+                facebook: document.getElementById('facebookLink').value,
+                facebookIconUrl: document.getElementById('facebookIconUrl').value,
+                tiktok: document.getElementById('tiktokLink').value,
+                tiktokIconUrl: document.getElementById('tiktokIconUrl').value,
+                youtube: document.getElementById('youtubeLink').value,
+                youtubeIconUrl: document.getElementById('youtubeIconUrl').value,
+                phone: document.getElementById('contactPhone').value,
+                phoneIconUrl: document.getElementById('phoneIconUrl').value,
+                email: document.getElementById('contactEmail').value,
+                emailIconUrl: document.getElementById('emailIconUrl').value,
+            };
+            db.collection('settings').doc('contactInfo').set(contactData, { merge: true }).then(() => alert('যোগাযোগের তথ্য সেভ হয়েছে!'));
+        }
+
+        function addBanner() {
+            const newBannerUrl = document.getElementById('newBannerUrl').value;
+            if (!newBannerUrl) return alert("দয়া করে ব্যানারের URL দিন।");
+            db.collection('settings').doc('siteInfo').update({
+                bannerUrl: firebase.firestore.FieldValue.arrayUnion(newBannerUrl)
+            }).then(() => {
+                alert("ব্যানার সফলভাবে যোগ হয়েছে!");
+                document.getElementById('newBannerUrl').value = '';
+            }).catch(error => { 
+                db.collection('settings').doc('siteInfo').set({ bannerUrl: [newBannerUrl] }, { merge: true });
+            });
+        }
+
+        function deleteBanner(bannerUrl) {
+            if (!confirm("আপনি কি নিশ্চিতভাবে এই ব্যানারটি মুছে ফেলতে চান?")) return;
+            db.collection('settings').doc('siteInfo').update({
+                bannerUrl: firebase.firestore.FieldValue.arrayRemove(bannerUrl)
+            }).then(() => alert("ব্যানার সফলভাবে মুছে ফেলা হয়েছে!"));
+        }
+
+        function loadSettings() {
+            db.collection('settings').doc('siteInfo').onSnapshot(doc => {
+                if (doc.exists) {
+                    const d = doc.data();
+                    document.getElementById('siteName').value = d.siteName || '';
+                    document.getElementById('siteLogoUrl').value = d.siteLogoUrl || '';
+                    const bannerListDiv = document.getElementById('banner-list');
+                    bannerListDiv.innerHTML = '';
+                    const banners = d.bannerUrl || [];
+                    bannerListDiv.innerHTML = banners.map(url => 
+                        `<div class="list-item"><span>${url}</span><button class="delete-btn" onclick="deleteBanner('${url}')">Delete</button></div>`
+                    ).join('');
+                }
+            });
+
+            db.collection('settings').doc('contactInfo').onSnapshot(doc => {
+                if (doc.exists) {
+                    const d = doc.data();
+                    document.getElementById('telegramLink').value = d.telegram || '';
+                    document.getElementById('telegramIconUrl').value = d.telegramIconUrl || '';
+                    document.getElementById('whatsappLink').value = d.whatsapp || '';
+                    document.getElementById('whatsappIconUrl').value = d.whatsappIconUrl || '';
+                    document.getElementById('facebookLink').value = d.facebook || '';
+                    document.getElementById('facebookIconUrl').value = d.facebookIconUrl || '';
+                    document.getElementById('tiktokLink').value = d.tiktok || '';
+                    document.getElementById('tiktokIconUrl').value = d.tiktokIconUrl || '';
+                    document.getElementById('youtubeLink').value = d.youtube || '';
+                    document.getElementById('youtubeIconUrl').value = d.youtubeIconUrl || '';
+                    document.getElementById('contactPhone').value = d.phone || '';
+                    document.getElementById('phoneIconUrl').value = d.phoneIconUrl || '';
+                    document.getElementById('contactEmail').value = d.email || '';
+                    document.getElementById('emailIconUrl').value = d.emailIconUrl || '';
+                }
+            });
+        }
+        
+        function addCategory() { const name = document.getElementById('categoryName').value; const imageUrl = document.getElementById('categoryImageUrl').value; if (name && imageUrl) db.collection('categories').add({ name, imageUrl }).then(() => { document.getElementById('categoryName').value = ''; document.getElementById('categoryImageUrl').value = ''; }); }
+        function loadCategories() { db.collection('categories').orderBy('name').onSnapshot(snapshot => { document.getElementById('category-list').innerHTML = snapshot.docs.map(doc => `<div class="list-item"><span>${doc.data().name}</span><button class="delete-btn" onclick="deleteDoc('categories', '${doc.id}')">Delete</button></div>`).join(''); document.getElementById('productCategory').innerHTML = '<option value="">-- ক্যাটাগরি --</option>' + snapshot.docs.map(doc => `<option value="${doc.data().name}">${doc.data().name}</option>`).join(''); }); }
+        
+        document.getElementById('productForm').addEventListener('submit', e => { 
+            e.preventDefault(); 
+            db.collection("products").add({ 
+                name: document.getElementById('productName').value, category: document.getElementById('productCategory').value, price: parseFloat(document.getElementById('productPrice').value), oldPrice: parseFloat(document.getElementById('oldPrice').value) || null, discount: parseInt(document.getElementById('discount').value) || null, imageUrl: document.getElementById('imageUrl').value, link: document.getElementById('productLink').value || null
+            }).then(() => e.target.reset()); 
+        });
+
+        function loadProducts() { db.collection('products').onSnapshot(snapshot => { document.getElementById('product-list').innerHTML = snapshot.docs.map(doc => `<div class="list-item"><span>${doc.data().name}</span><button class="delete-btn" onclick="deleteDoc('products', '${doc.id}')">Delete</button></div>`).join(''); }); }
+        function loadOrders() { db.collection('orders').orderBy('orderDate', 'desc').onSnapshot(snapshot => { document.getElementById('order-list').innerHTML = snapshot.docs.map(doc => { const o = doc.data(); return `<div class="list-item"><span>${o.customerName} - ${o.productName}</span><div><select onchange="updateOrderStatus('${doc.id}', this.value)"><option ${o.status === 'Pending' ? 'selected' : ''}>Pending</option><option ${o.status === 'Shipped' ? 'selected' : ''}>Shipped</option><option ${o.status === 'Delivered' ? 'selected' : ''}>Delivered</option></select><button class="delete-btn" onclick="deleteDoc('orders', '${doc.id}')">Delete</button></div></div>`; }).join(''); }); }
+        function updateOrderStatus(id, status) { db.collection('orders').doc(id).update({ status }); }
+        function loadUsers() { db.collection('users').onSnapshot(snapshot => { document.getElementById('user-list').innerHTML = snapshot.docs.map(doc => { const u = doc.data(); return `<div class="list-item"><span>${u.displayName} (${u.email})</span><div><button class="block-btn ${u.isBlocked ? 'unblock' : ''}" onclick="toggleUserBlock('${doc.id}', ${u.isBlocked || false})">${u.isBlocked ? 'Unblock' : 'Block'}</button><button class="delete-btn" onclick="deleteDoc('users', '${doc.id}')">Delete</button></div></div>` }).join(''); }); }
+        function toggleUserBlock(id, isCurrentlyBlocked) { db.collection('users').doc(id).update({ isBlocked: !isCurrentlyBlocked }); }
+        function deleteDoc(collection, id) { if (confirm('আপনি কি নিশ্চিত? এটি মুছে ফেলা হবে।')) db.collection(collection).doc(id).delete(); }
+    </script>
+</body>
+</html>

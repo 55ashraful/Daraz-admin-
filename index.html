@@ -106,6 +106,19 @@
                         <h2>সাধারণ সেটিংস</h2>
                         <label>সাইটের নাম:</label><input type="text" id="siteName" placeholder="e.g., Daraz">
                         <label>সাইটের লোগো URL:</label><input type="text" id="siteLogoUrl" placeholder="লোগো ছবির লিংক দিন">
+                        
+                        <label>ফুটার ব্যাকগ্রাউন্ড কালার:</label>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <input type="color" id="footerColorPicker" style="height: 45px; padding: 5px; width: 60px; border: 1px solid #ccc; border-radius: 5px;">
+                            <input type="text" id="footerColor" placeholder="#2E7D32">
+                        </div>
+
+                        <!-- নতুন ফুটার লোগো ইনপুট যোগ করা হয়েছে -->
+                        <label>ফুটার লোগো ১ URL:</label>
+                        <input type="text" id="footerLogo1Url" placeholder="বড় লোগোর ছবির লিংক দিন">
+                        <label>ফুটার লোগো ২ URL:</label>
+                        <input type="text" id="footerLogo2Url" placeholder="ছোট লোগোর ছবির লিংক দিন">
+
                         <button onclick="saveGeneralSettings()">সাধারণ সেটিংস সেভ করুন</button>
                     </div>
 
@@ -125,6 +138,9 @@
                         <label>ফোন আইকন URL:</label><input type="text" id="phoneIconUrl" placeholder="Phone আইকনের ছবির লিংক">
                         <label>ইমেইল:</label><input type="text" id="contactEmail" placeholder="example@gmail.com">
                         <label>ইমেইল আইকন URL:</label><input type="text" id="emailIconUrl" placeholder="Email আইকনের ছবির লিংক">
+                        <label>লোকেশন/ঠিকানা:</label><textarea id="address" placeholder="আপনার অফিসের সম্পূর্ণ ঠিকানা দিন" rows="4"></textarea>
+                        <label>লোকেশন আইকন URL:</label><input type="text" id="addressIconUrl" placeholder="লোকেশন আইকনের ছবির লিংক">
+                        
                         <button onclick="saveContactSettings()">যোগাযোগের তথ্য সেভ করুন</button>
                     </div>
 
@@ -205,7 +221,22 @@
 
         function toggleSidebar() { document.querySelector('.sidebar').classList.toggle('open'); }
         function showPage(pageId) { document.querySelectorAll('.page').forEach(p => p.classList.remove('active')); document.getElementById(pageId).classList.add('active'); document.querySelectorAll('.sidebar-menu a').forEach(a => a.classList.remove('active')); document.querySelector(`.sidebar-menu a[onclick="showPage('${pageId}')"]`).classList.add('active'); pageTitle.innerText = document.querySelector(`.sidebar-menu a.active`).innerText; if(window.innerWidth < 768) { toggleSidebar(); } }
-        auth.onAuthStateChanged(user => { if(user) { authContainer.style.display = 'none'; adminWrapper.style.display = 'flex'; loadAllAdminData(); } else { authContainer.style.display = 'flex'; adminWrapper.style.display = 'none'; } });
+        auth.onAuthStateChanged(user => { 
+            if(user) { 
+                authContainer.style.display = 'none'; 
+                adminWrapper.style.display = 'flex'; 
+                loadAllAdminData();
+                
+                const colorPicker = document.getElementById('footerColorPicker');
+                const colorText = document.getElementById('footerColor');
+                colorPicker.addEventListener('input', () => colorText.value = colorPicker.value);
+                colorText.addEventListener('input', () => colorPicker.value = colorText.value);
+
+            } else { 
+                authContainer.style.display = 'flex'; 
+                adminWrapper.style.display = 'none'; 
+            } 
+        });
         document.getElementById('loginForm').addEventListener('submit', e => { e.preventDefault(); auth.signInWithEmailAndPassword(document.getElementById('email').value, document.getElementById('password').value).catch(err => alert(err.message)); });
         document.getElementById('logoutBtn').addEventListener('click', () => auth.signOut());
         
@@ -213,16 +244,64 @@
         
         function loadDashboardStats() { db.collection('users').onSnapshot(snap => document.getElementById('totalUsers').innerText = snap.size); db.collection('products').onSnapshot(snap => document.getElementById('totalProducts').innerText = snap.size); db.collection('orders').onSnapshot(snap => document.getElementById('totalOrders').innerText = snap.size); }
 
-        function saveGeneralSettings() { db.collection('settings').doc('siteInfo').set({ siteName: document.getElementById('siteName').value, siteLogoUrl: document.getElementById('siteLogoUrl').value }, { merge: true }).then(() => alert('সাধারণ সেটিংস সেভ হয়েছে!')); }
-        function saveContactSettings() { db.collection('settings').doc('contactInfo').set({ telegram: document.getElementById('telegramLink').value, telegramIconUrl: document.getElementById('telegramIconUrl').value, whatsapp: document.getElementById('whatsappLink').value, whatsappIconUrl: document.getElementById('whatsappIconUrl').value, facebook: document.getElementById('facebookLink').value, facebookIconUrl: document.getElementById('facebookIconUrl').value, tiktok: document.getElementById('tiktokLink').value, tiktokIconUrl: document.getElementById('tiktokIconUrl').value, youtube: document.getElementById('youtubeLink').value, youtubeIconUrl: document.getElementById('youtubeIconUrl').value, phone: document.getElementById('contactPhone').value, phoneIconUrl: document.getElementById('phoneIconUrl').value, email: document.getElementById('contactEmail').value, emailIconUrl: document.getElementById('emailIconUrl').value }, { merge: true }).then(() => alert('যোগাযোগের তথ্য সেভ হয়েছে!')); }
+        function saveGeneralSettings() { 
+            db.collection('settings').doc('siteInfo').set({ 
+                siteName: document.getElementById('siteName').value, 
+                siteLogoUrl: document.getElementById('siteLogoUrl').value,
+                footerColor: document.getElementById('footerColor').value,
+                // নতুন লোগো URL সেভ করার কোড
+                footerLogo1Url: document.getElementById('footerLogo1Url').value,
+                footerLogo2Url: document.getElementById('footerLogo2Url').value
+            }, { merge: true }).then(() => alert('সাধারণ সেটিংস সেভ হয়েছে!')); 
+        }
+
+        function saveContactSettings() { 
+            db.collection('settings').doc('contactInfo').set({ 
+                telegram: document.getElementById('telegramLink').value, telegramIconUrl: document.getElementById('telegramIconUrl').value, 
+                whatsapp: document.getElementById('whatsappLink').value, whatsappIconUrl: document.getElementById('whatsappIconUrl').value, 
+                facebook: document.getElementById('facebookLink').value, facebookIconUrl: document.getElementById('facebookIconUrl').value, 
+                tiktok: document.getElementById('tiktokLink').value, tiktokIconUrl: document.getElementById('tiktokIconUrl').value, 
+                youtube: document.getElementById('youtubeLink').value, youtubeIconUrl: document.getElementById('youtubeIconUrl').value, 
+                phone: document.getElementById('contactPhone').value, phoneIconUrl: document.getElementById('phoneIconUrl').value, 
+                email: document.getElementById('contactEmail').value, emailIconUrl: document.getElementById('emailIconUrl').value,
+                address: document.getElementById('address').value,
+                addressIconUrl: document.getElementById('addressIconUrl').value
+            }, { merge: true }).then(() => alert('যোগাযোগের তথ্য সেভ হয়েছে!')); 
+        }
         function addBanner() { const newBannerUrl = document.getElementById('newBannerUrl').value; if (!newBannerUrl) return alert("দয়া করে ব্যানারের URL দিন।"); db.collection('settings').doc('siteInfo').update({ bannerUrl: firebase.firestore.FieldValue.arrayUnion(newBannerUrl) }).then(() => { alert("ব্যানার সফলভাবে যোগ হয়েছে!"); document.getElementById('newBannerUrl').value = ''; }).catch(error => { db.collection('settings').doc('siteInfo').set({ bannerUrl: [newBannerUrl] }, { merge: true }); }); }
         function deleteBanner(bannerUrl) { if (!confirm("আপনি কি নিশ্চিতভাবে এই ব্যানারটি মুছে ফেলতে চান?")) return; db.collection('settings').doc('siteInfo').update({ bannerUrl: firebase.firestore.FieldValue.arrayRemove(bannerUrl) }).then(() => alert("ব্যানার সফলভাবে মুছে ফেলা হয়েছে!")); }
         function loadSettings() {
             db.collection('settings').doc('siteInfo').onSnapshot(doc => {
-                if (doc.exists) { const d = doc.data(); document.getElementById('siteName').value = d.siteName || ''; document.getElementById('siteLogoUrl').value = d.siteLogoUrl || ''; const bannerListDiv = document.getElementById('banner-list'); bannerListDiv.innerHTML = (d.bannerUrl || []).map(url => `<div class="list-item"><span>${url}</span><div class="actions"><button class="action-btn delete-btn" onclick="deleteBanner('${url}')">Delete</button></div></div>`).join(''); }
+                if (doc.exists) { 
+                    const d = doc.data(); 
+                    document.getElementById('siteName').value = d.siteName || ''; 
+                    document.getElementById('siteLogoUrl').value = d.siteLogoUrl || ''; 
+                    
+                    const footerColor = d.footerColor || '#2E7D32';
+                    document.getElementById('footerColor').value = footerColor;
+                    document.getElementById('footerColorPicker').value = footerColor;
+                    
+                    // নতুন লোগো URL লোড করার কোড
+                    document.getElementById('footerLogo1Url').value = d.footerLogo1Url || '';
+                    document.getElementById('footerLogo2Url').value = d.footerLogo2Url || '';
+
+                    const bannerListDiv = document.getElementById('banner-list'); 
+                    bannerListDiv.innerHTML = (d.bannerUrl || []).map(url => `<div class="list-item"><span>${url}</span><div class="actions"><button class="action-btn delete-btn" onclick="deleteBanner('${url}')">Delete</button></div></div>`).join(''); 
+                }
             });
             db.collection('settings').doc('contactInfo').onSnapshot(doc => {
-                if (doc.exists) { const d = doc.data(); document.getElementById('telegramLink').value = d.telegram || ''; document.getElementById('telegramIconUrl').value = d.telegramIconUrl || ''; document.getElementById('whatsappLink').value = d.whatsapp || ''; document.getElementById('whatsappIconUrl').value = d.whatsappIconUrl || ''; document.getElementById('facebookLink').value = d.facebook || ''; document.getElementById('facebookIconUrl').value = d.facebookIconUrl || ''; document.getElementById('tiktokLink').value = d.tiktok || ''; document.getElementById('tiktokIconUrl').value = d.tiktokIconUrl || ''; document.getElementById('youtubeLink').value = d.youtube || ''; document.getElementById('youtubeIconUrl').value = d.youtubeIconUrl || ''; document.getElementById('contactPhone').value = d.phone || ''; document.getElementById('phoneIconUrl').value = d.phoneIconUrl || ''; document.getElementById('contactEmail').value = d.email || ''; document.getElementById('emailIconUrl').value = d.emailIconUrl || ''; }
+                if (doc.exists) { 
+                    const d = doc.data(); 
+                    document.getElementById('telegramLink').value = d.telegram || ''; document.getElementById('telegramIconUrl').value = d.telegramIconUrl || ''; 
+                    document.getElementById('whatsappLink').value = d.whatsapp || ''; document.getElementById('whatsappIconUrl').value = d.whatsappIconUrl || ''; 
+                    document.getElementById('facebookLink').value = d.facebook || ''; document.getElementById('facebookIconUrl').value = d.facebookIconUrl || ''; 
+                    document.getElementById('tiktokLink').value = d.tiktok || ''; document.getElementById('tiktokIconUrl').value = d.tiktokIconUrl || ''; 
+                    document.getElementById('youtubeLink').value = d.youtube || ''; document.getElementById('youtubeIconUrl').value = d.youtubeIconUrl || ''; 
+                    document.getElementById('contactPhone').value = d.phone || ''; document.getElementById('phoneIconUrl').value = d.phoneIconUrl || ''; 
+                    document.getElementById('contactEmail').value = d.email || ''; document.getElementById('emailIconUrl').value = d.emailIconUrl || '';
+                    document.getElementById('address').value = d.address || '';
+                    document.getElementById('addressIconUrl').value = d.addressIconUrl || '';
+                }
             });
         }
         

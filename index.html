@@ -207,7 +207,16 @@
     <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-firestore.js"></script>
 
     <script>
-        const firebaseConfig = { apiKey: "AIzaSyAu3_ZYZXMStF9yZvVip2upsUGYucaH01s", authDomain: "my-website-ccbd8.firebaseapp.com", projectId: "my-website-ccbd8", storageBucket: "my-website-ccbd8.appspot.com", messagingSenderId: "681649523272", appId: "1:681649523272:web:3dcf1d8300a7efe2de267d" };
+        const firebaseConfig = {
+  apiKey: "AIzaSyAVFJyAI2q946P2l57xwFN1DXQ54D7a7g0",
+  authDomain: "my-daraz-d216e.firebaseapp.com",
+  databaseURL: "https://my-daraz-d216e-default-rtdb.firebaseio.com",
+  projectId: "my-daraz-d216e",
+  storageBucket: "my-daraz-d216e.firebasestorage.app",
+  messagingSenderId: "316479124711",
+  appId: "1:316479124711:web:cc80d8d3aeb3c5e48f9e42",
+  measurementId: "G-RTGB9WQC3Y"
+};
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
         const db = firebase.firestore();

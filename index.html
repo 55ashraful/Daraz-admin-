@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ржЕрзНржпрж╛ржбржорж┐ржи ржкрзНржпрж╛ржирзЗрж▓</title>
+    <title>অ্যাডমিন প্যানেল</title>
     <style>
         :root {
             --main-bg: #f0f2f5;
@@ -86,145 +86,145 @@
 
     <div id="auth-container">
         <div id="loginCard" class="card">
-            <h2>ржЕрзНржпрж╛ржбржорж┐ржи рж▓ржЧржЗржи</h2>
+            <h2>অ্যাডমিন লগইন</h2>
             <form id="loginForm">
                 <label for="email">Email:</label><input type="email" id="email" required>
                 <label for="password">Password:</label><input type="password" id="password" required>
-                <button type="submit">рж▓ржЧржЗржи ржХрж░рзБржи</button>
+                <button type="submit">লগইন করুন</button>
             </form>
         </div>
     </div>
     
     <div id="admin-wrapper" class="admin-wrapper" style="display: none;">
         <div class="sidebar">
-            <div class="sidebar-header">ржЕрзНржпрж╛ржбржорж┐ржи</div>
+            <div class="sidebar-header">অ্যাডমিন</div>
             <div class="sidebar-menu">
-                <a href="#" onclick="showPage('dashboardPage')" class="active">ржбрзНржпрж╛рж╢ржмрзЛрж░рзНржб</a>
-                <a href="#" onclick="showPage('settingsPage')">рж╕рж╛ржЗржЯ рж╕рзЗржЯрж┐ржВрж╕</a>
-                <a href="#" onclick="showPage('freeProductPage')" class="free-menu">ЁЯОБ ржлрзНрж░рж┐ ржкрзНрж░рзЛржбрж╛ржХрзНржЯ</a>
-                <a href="#" onclick="showPage('categoriesPage')">ржХрзНржпрж╛ржЯрж╛ржЧрж░рж┐</a>
-                <a href="#" onclick="showPage('productsPage')">ржкржгрзНржп</a>
-                <a href="#" onclick="showPage('ordersPage')">ржЕрж░рзНржбрж╛рж░</a>
-                <a href="#" onclick="showPage('usersPage')">ржмрзНржпржмрж╣рж╛рж░ржХрж╛рж░рзА</a>
+                <a href="#" onclick="showPage('dashboardPage')" class="active">ড্যাশবোর্ড</a>
+                <a href="#" onclick="showPage('settingsPage')">সাইট সেটিংস</a>
+                <a href="#" onclick="showPage('freeProductPage')" class="free-menu">🎁 ফ্রি প্রোডাক্ট</a>
+                <a href="#" onclick="showPage('categoriesPage')">ক্যাটাগরি</a>
+                <a href="#" onclick="showPage('productsPage')">পণ্য</a>
+                <a href="#" onclick="showPage('ordersPage')">অর্ডার</a>
+                <a href="#" onclick="showPage('usersPage')">ব্যবহারকারী</a>
             </div>
         </div>
         <div class="main-content">
             <div class="header">
                 <span class="menu-toggle" onclick="toggleSidebar()">&#9776;</span>
-                <h2 id="pageTitle">ржбрзНржпрж╛рж╢ржмрзЛрж░рзНржб</h2>
-                <button id="logoutBtn" class="logout-btn">рж▓ржЧржЖржЙржЯ</button>
+                <h2 id="pageTitle">ড্যাশবোর্ড</h2>
+                <button id="logoutBtn" class="logout-btn">লগআউট</button>
             </div>
             <div class="content">
                 <div id="dashboardPage" class="page active">
                     <div class="stat-cards">
-                        <div class="card"><h3>ржорзЛржЯ ржмрзНржпржмрж╣рж╛рж░ржХрж╛рж░рзА</h3><p id="totalUsers" class="stat-number">0</p></div>
-                        <div class="card"><h3>ржорзЛржЯ ржкржгрзНржп</h3><p id="totalProducts" class="stat-number">0</p></div>
-                        <div class="card"><h3>ржорзЛржЯ ржЕрж░рзНржбрж╛рж░</h3><p id="totalOrders" class="stat-number">0</p></div>
+                        <div class="card"><h3>মোট ব্যবহারকারী</h3><p id="totalUsers" class="stat-number">0</p></div>
+                        <div class="card"><h3>মোট পণ্য</h3><p id="totalProducts" class="stat-number">0</p></div>
+                        <div class="card"><h3>মোট অর্ডার</h3><p id="totalOrders" class="stat-number">0</p></div>
                     </div>
                 </div>
 
                 <div id="settingsPage" class="page">
                     <div class="admin-section">
-                        <h2>рж╕рж╛ржзрж╛рж░ржг рж╕рзЗржЯрж┐ржВрж╕</h2>
-                        <label>рж╕рж╛ржЗржЯрзЗрж░ ржирж╛ржо:</label><input type="text" id="siteName" placeholder="e.g., Daraz">
-                        <label>рж╕рж╛ржЗржЯрзЗрж░ рж▓рзЛржЧрзЛ URL:</label><input type="text" id="siteLogoUrl" placeholder="рж▓рзЛржЧрзЛ ржЫржмрж┐рж░ рж▓рж┐ржВржХ ржжрж┐ржи">
+                        <h2>সাধারণ সেটিংস</h2>
+                        <label>সাইটের নাম:</label><input type="text" id="siteName" placeholder="e.g., Daraz">
+                        <label>সাইটের লোগো URL:</label><input type="text" id="siteLogoUrl" placeholder="লোগো ছবির লিংক দিন">
                         
-                        <label>ржлрзБржЯрж╛рж░ ржмрзНржпрж╛ржХржЧрзНрж░рж╛ржЙржирзНржб ржХрж╛рж▓рж╛рж░:</label>
+                        <label>ফুটার ব্যাকগ্রাউন্ড কালার:</label>
                         <div style="display: flex; align-items: center; gap: 10px;">
                             <input type="color" id="footerColorPicker" style="height: 45px; padding: 5px; width: 60px; border: 1px solid #ccc; border-radius: 5px;">
                             <input type="text" id="footerColor" placeholder="#2E7D32">
                         </div>
 
-                        <label>ржлрзБржЯрж╛рж░ рж▓рзЛржЧрзЛ рзз URL:</label>
-                        <input type="text" id="footerLogo1Url" placeholder="ржмржбрж╝ рж▓рзЛржЧрзЛрж░ ржЫржмрж┐рж░ рж▓рж┐ржВржХ ржжрж┐ржи">
-                        <label>ржлрзБржЯрж╛рж░ рж▓рзЛржЧрзЛ рзи URL:</label>
-                        <input type="text" id="footerLogo2Url" placeholder="ржЫрзЛржЯ рж▓рзЛржЧрзЛрж░ ржЫржмрж┐рж░ рж▓рж┐ржВржХ ржжрж┐ржи">
+                        <label>ফুটার লোগো ১ URL:</label>
+                        <input type="text" id="footerLogo1Url" placeholder="বড় লোগোর ছবির লিংক দিন">
+                        <label>ফুটার লোগো ২ URL:</label>
+                        <input type="text" id="footerLogo2Url" placeholder="ছোট লোগোর ছবির লিংক দিন">
 
-                        <button onclick="saveGeneralSettings()">рж╕рж╛ржзрж╛рж░ржг рж╕рзЗржЯрж┐ржВрж╕ рж╕рзЗржн ржХрж░рзБржи</button>
+                        <button onclick="saveGeneralSettings()">সাধারণ সেটিংস সেভ করুন</button>
                     </div>
 
                     <div class="admin-section">
-                        <h2>ржпрзЛржЧрж╛ржпрзЛржЧрзЗрж░ рждржерзНржп</h2>
-                        <label>ржЯрзЗрж▓рж┐ржЧрзНрж░рж╛ржо рж▓рж┐ржВржХ:</label><input type="text" id="telegramLink" placeholder="Telegram Profile/Channel Link">
-                        <label>ржЯрзЗрж▓рж┐ржЧрзНрж░рж╛ржо ржЖржЗржХржи URL:</label><input type="text" id="telegramIconUrl" placeholder="Telegram ржЖржЗржХржирзЗрж░ ржЫржмрж┐рж░ рж▓рж┐ржВржХ">
-                        <label>рж╣рзЛржпрж╝рж╛ржЯрж╕ржЕрзНржпрж╛ржк рж▓рж┐ржВржХ (wa.me/ рж╕рж╣):</label><input type="text" id="whatsappLink" placeholder="wa.me/880...">
-                        <label>рж╣рзЛржпрж╝рж╛ржЯрж╕ржЕрзНржпрж╛ржк ржЖржЗржХржи URL:</label><input type="text" id="whatsappIconUrl" placeholder="WhatsApp ржЖржЗржХржирзЗрж░ ржЫржмрж┐рж░ рж▓рж┐ржВржХ">
-                        <label>ржлрзЗрж╕ржмрзБржХ ржкрзЗржЬ рж▓рж┐ржВржХ:</label><input type="text" id="facebookLink" placeholder="Facebook Page Link">
-                        <label>ржлрзЗрж╕ржмрзБржХ ржЖржЗржХржи URL:</label><input type="text" id="facebookIconUrl" placeholder="Facebook ржЖржЗржХржирзЗрж░ ржЫржмрж┐рж░ рж▓рж┐ржВржХ">
-                        <label>ржЯрж┐ржХржЯржХ рж▓рж┐ржВржХ:</label><input type="text" id="tiktokLink" placeholder="TikTok Profile Link">
-                        <label>ржЯрж┐ржХржЯржХ ржЖржЗржХржи URL:</label><input type="text" id="tiktokIconUrl" placeholder="TikTok ржЖржЗржХржирзЗрж░ ржЫржмрж┐рж░ рж▓рж┐ржВржХ">
-                        <label>ржЗржЙржЯрж┐ржЙржм ржЪрзНржпрж╛ржирзЗрж▓ рж▓рж┐ржВржХ:</label><input type="text" id="youtubeLink" placeholder="YouTube Channel Link">
-                        <label>ржЗржЙржЯрж┐ржЙржм ржЖржЗржХржи URL:</label><input type="text" id="youtubeIconUrl" placeholder="YouTube ржЖржЗржХржирзЗрж░ ржЫржмрж┐рж░ рж▓рж┐ржВржХ">
-                        <label>ржлрзЛржи ржиржорзНржмрж░:</label><input type="text" id="contactPhone" placeholder="017...">
-                        <label>ржлрзЛржи ржЖржЗржХржи URL:</label><input type="text" id="phoneIconUrl" placeholder="Phone ржЖржЗржХржирзЗрж░ ржЫржмрж┐рж░ рж▓рж┐ржВржХ">
-                        <label>ржЗржорзЗржЗрж▓:</label><input type="text" id="contactEmail" placeholder="example@gmail.com">
-                        <label>ржЗржорзЗржЗрж▓ ржЖржЗржХржи URL:</label><input type="text" id="emailIconUrl" placeholder="Email ржЖржЗржХржирзЗрж░ ржЫржмрж┐рж░ рж▓рж┐ржВржХ">
-                        <label>рж▓рзЛржХрзЗрж╢ржи/ржарж┐ржХрж╛ржирж╛:</label><textarea id="address" placeholder="ржЖржкржирж╛рж░ ржЕржлрж┐рж╕рзЗрж░ рж╕ржорзНржкрзВрж░рзНржг ржарж┐ржХрж╛ржирж╛ ржжрж┐ржи" rows="4"></textarea>
-                        <label>рж▓рзЛржХрзЗрж╢ржи ржЖржЗржХржи URL:</label><input type="text" id="addressIconUrl" placeholder="рж▓рзЛржХрзЗрж╢ржи ржЖржЗржХржирзЗрж░ ржЫржмрж┐рж░ рж▓рж┐ржВржХ">
+                        <h2>যোগাযোগের তথ্য</h2>
+                        <label>টেলিগ্রাম লিংক:</label><input type="text" id="telegramLink" placeholder="Telegram Profile/Channel Link">
+                        <label>টেলিগ্রাম আইকন URL:</label><input type="text" id="telegramIconUrl" placeholder="Telegram আইকনের ছবির লিংক">
+                        <label>হোয়াটসঅ্যাপ লিংক (wa.me/ সহ):</label><input type="text" id="whatsappLink" placeholder="wa.me/880...">
+                        <label>হোয়াটসঅ্যাপ আইকন URL:</label><input type="text" id="whatsappIconUrl" placeholder="WhatsApp আইকনের ছবির লিংক">
+                        <label>ফেসবুক পেজ লিংক:</label><input type="text" id="facebookLink" placeholder="Facebook Page Link">
+                        <label>ফেসবুক আইকন URL:</label><input type="text" id="facebookIconUrl" placeholder="Facebook আইকনের ছবির লিংক">
+                        <label>টিকটক লিংক:</label><input type="text" id="tiktokLink" placeholder="TikTok Profile Link">
+                        <label>টিকটক আইকন URL:</label><input type="text" id="tiktokIconUrl" placeholder="TikTok আইকনের ছবির লিংক">
+                        <label>ইউটিউব চ্যানেল লিংক:</label><input type="text" id="youtubeLink" placeholder="YouTube Channel Link">
+                        <label>ইউটিউব আইকন URL:</label><input type="text" id="youtubeIconUrl" placeholder="YouTube আইকনের ছবির লিংক">
+                        <label>ফোন নম্বর:</label><input type="text" id="contactPhone" placeholder="017...">
+                        <label>ফোন আইকন URL:</label><input type="text" id="phoneIconUrl" placeholder="Phone আইকনের ছবির লিংক">
+                        <label>ইমেইল:</label><input type="text" id="contactEmail" placeholder="example@gmail.com">
+                        <label>ইমেইল আইকন URL:</label><input type="text" id="emailIconUrl" placeholder="Email আইকনের ছবির লিংক">
+                        <label>লোকেশন/ঠিকানা:</label><textarea id="address" placeholder="আপনার অফিসের সম্পূর্ণ ঠিকানা দিন" rows="4"></textarea>
+                        <label>লোকেশন আইকন URL:</label><input type="text" id="addressIconUrl" placeholder="লোকেশন আইকনের ছবির লিংক">
                         
-                        <button onclick="saveContactSettings()">ржпрзЛржЧрж╛ржпрзЛржЧрзЗрж░ рждржерзНржп рж╕рзЗржн ржХрж░рзБржи</button>
+                        <button onclick="saveContactSettings()">যোগাযোগের তথ্য সেভ করুন</button>
                     </div>
 
                     <div class="admin-section">
-                        <h2>ржмрзНржпрж╛ржирж╛рж░ ржорзНржпрж╛ржирзЗржЬржорзЗржирзНржЯ</h2>
-                        <label for="newBannerUrl">ржирждрзБржи ржмрзНржпрж╛ржирж╛рж░ URL:</label>
-                        <input type="text" id="newBannerUrl" placeholder="ржПржЦрж╛ржирзЗ ржирждрзБржи ржмрзНржпрж╛ржирж╛рж░рзЗрж░ ржЫржмрж┐рж░ рж▓рж┐ржВржХ ржжрж┐ржи">
-                        <button class="add-btn" onclick="addBanner()">ржмрзНржпрж╛ржирж╛рж░ ржпрзЛржЧ ржХрж░рзБржи</button>
-                        <h3 style="margin-top: 30px;">ржмрж░рзНрждржорж╛ржи ржмрзНржпрж╛ржирж╛рж░рж╕ржорзВрж╣</h3>
+                        <h2>ব্যানার ম্যানেজমেন্ট</h2>
+                        <label for="newBannerUrl">নতুন ব্যানার URL:</label>
+                        <input type="text" id="newBannerUrl" placeholder="এখানে নতুন ব্যানারের ছবির লিংক দিন">
+                        <button class="add-btn" onclick="addBanner()">ব্যানার যোগ করুন</button>
+                        <h3 style="margin-top: 30px;">বর্তমান ব্যানারসমূহ</h3>
                         <div id="banner-list"></div>
                     </div>
                 </div>
 
-                <!-- ============== ржирждрзБржи: ржлрзНрж░рж┐ ржкрзНрж░рзЛржбрж╛ржХрзНржЯ ржкрзЗржЬ ============== -->
+                <!-- ============== নতুন: ফ্রি প্রোডাক্ট পেজ ============== -->
                 <div id="freeProductPage" class="page">
                     <div class="admin-section free-section">
-                        <span class="section-badge">ЁЯОБ ржирждрзБржи ржлрж┐ржЪрж╛рж░</span>
-                        <h2>ржлрзНрж░рж┐ ржкрзНрж░рзЛржбрж╛ржХрзНржЯ рж╕рзЗржЯрж┐ржВрж╕</h2>
-                        <p style="color:#666; font-size:14px; margin-bottom:10px;">ржПржЗ рж╕рзЗржЯрж┐ржВрж╕ржЧрзБрж▓рзЛ ржорзВрж▓ ржУржпрж╝рзЗржмрж╕рж╛ржЗржЯрзЗрж░ "ржлрзНрж░рж┐ ржЧрж┐ржлржЯ ржЬрж┐рждрзЗ ржирж┐ржи" ржмрзНржпрж╛ржирж╛рж░ ржУ ржХрзНрж▓рзЗржЗржо ржкрзЗржЬ ржирж┐ржпрж╝ржирзНрждрзНрж░ржг ржХрж░ржмрзЗред</p>
+                        <span class="section-badge">🎁 নতুন ফিচার</span>
+                        <h2>ফ্রি প্রোডাক্ট সেটিংস</h2>
+                        <p style="color:#666; font-size:14px; margin-bottom:10px;">এই সেটিংসগুলো মূল ওয়েবসাইটের "ফ্রি গিফট জিতে নিন" ব্যানার ও ক্লেইম পেজ নিয়ন্ত্রণ করবে।</p>
 
-                        <label>ржкрзЗржЬрзЗрж░ ржЯрж╛ржЗржЯрзЗрж▓:</label>
-                        <input type="text" id="freeTitle" placeholder="ржпрзЗржоржи: ржлрзНрж░рж┐ ржЧрж┐ржлрзНржЯ ржЬрж┐рждрзБржи!">
+                        <label>পেজের টাইটেল:</label>
+                        <input type="text" id="freeTitle" placeholder="যেমন: ফ্রি গিফ্ট জিতুন!">
 
-                        <label>ржкрзНрж░рзЛржбрж╛ржХрзНржЯрзЗрж░ ржЫржмрж┐ URL:</label>
-                        <input type="text" id="freeImageUrl" placeholder="ржкрзНрж░рзЛржбрж╛ржХрзНржЯрзЗрж░ ржЫржмрж┐рж░ рж▓рж┐ржВржХ ржжрж┐ржи" oninput="previewFreeImage()">
-                        <img id="freeImagePreview" class="free-preview-img" alt="ржкрзНрж░рж┐ржнрж┐ржЙ">
+                        <label>প্রোডাক্টের ছবি URL:</label>
+                        <input type="text" id="freeImageUrl" placeholder="প্রোডাক্টের ছবির লিংক দিন" oninput="previewFreeImage()">
+                        <img id="freeImagePreview" class="free-preview-img" alt="প্রিভিউ">
 
-                        <label>ржХрзНрж▓рзЗржЗржо ржЯрзЗржХрзНрж╕ржЯ (ржЙржкрж░рзЗ ржжрзЗржЦрж╛ржмрзЗ):</label>
-                        <input type="text" id="freeClaimedText" placeholder="ржпрзЗржоржи: рззрзи,рзлрзжрзж ржЬржи ржХрзНрж▓рзЗржЗржо ржХрж░рзЗржЫрзЗ">
+                        <label>ক্লেইম টেক্সট (উপরে দেখাবে):</label>
+                        <input type="text" id="freeClaimedText" placeholder="যেমন: ১২,৫০০ জন ক্লেইম করেছে">
 
                         <div class="input-row">
                             <div>
-                                <label>ржЖрж╕рж▓ ржорзВрж▓рзНржп (рз│):</label>
+                                <label>আসল মূল্য (৳):</label>
                                 <input type="number" id="freeOriginalPrice" placeholder="1500">
                             </div>
                             <div>
-                                <label>ржХржорж╛ржирзЛрж░ ржкрж░рж┐ржорж╛ржг (рз│):</label>
+                                <label>কমানোর পরিমাণ (৳):</label>
                                 <input type="number" id="freeAmountCut" placeholder="1200">
                             </div>
                         </div>
 
                         <div class="input-row">
                             <div>
-                                <label>ржмрж╛ржХрж┐ ржорзВрж▓рзНржп (рз│):</label>
+                                <label>বাকি মূল্য (৳):</label>
                                 <input type="number" id="freeAmountRemaining" placeholder="300">
                             </div>
                             <div>
-                                <label>ржкрзНрж░ржЧрзНрж░рзЗрж╕ рж╢рждрж╛ржВрж╢ (%):</label>
+                                <label>প্রগ্রেস শতাংশ (%):</label>
                                 <input type="number" id="freeProgressPercentage" placeholder="80" min="0" max="100">
                             </div>
                         </div>
 
-                        <label>ржмрж╛ржЯржирзЗрж░ ржЯрзЗржХрзНрж╕ржЯ:</label>
-                        <input type="text" id="freeBtnText" placeholder="ржпрзЗржоржи: Share Now">
+                        <label>বাটনের টেক্সট:</label>
+                        <input type="text" id="freeBtnText" placeholder="যেমন: Share Now">
 
-                        <label>ржмрж╛ржЯржирзЗрж░ рж▓рж┐ржВржХ (URL):</label>
-                        <input type="text" id="freeBtnLink" placeholder="ржпрзЗржоржи: https://your-link.com">
+                        <label>বাটনের লিংক (URL):</label>
+                        <input type="text" id="freeBtnLink" placeholder="যেমন: https://your-link.com">
 
-                        <button class="free-save-btn" onclick="saveFreeProductSettings()">ЁЯТ╛ ржлрзНрж░рж┐ ржкрзНрж░рзЛржбрж╛ржХрзНржЯ рж╕рзЗржн ржХрж░рзБржи</button>
-                        <button class="free-delete-btn" onclick="deleteFreeProductSettings()">ЁЯЧСя╕П ржлрзНрж░рж┐ ржкрзНрж░рзЛржбрж╛ржХрзНржЯ ржбрж┐рж▓рж┐ржЯ ржХрж░рзБржи</button>
+                        <button class="free-save-btn" onclick="saveFreeProductSettings()">💾 ফ্রি প্রোডাক্ট সেভ করুন</button>
+                        <button class="free-delete-btn" onclick="deleteFreeProductSettings()">🗑️ ফ্রি প্রোডাক্ট ডিলিট করুন</button>
 
                         <div style="margin-top: 30px; padding: 15px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #7d2ae8;">
-                            <h4 style="margin:0 0 10px; color:#333;">ЁЯУЛ ржмрж░рзНрждржорж╛ржи ржбрж╛ржЯрж╛ ржкрзНрж░рж┐ржнрж┐ржЙ</h4>
+                            <h4 style="margin:0 0 10px; color:#333;">📋 বর্তমান ডাটা প্রিভিউ</h4>
                             <div id="freeProductPreviewData" style="font-size:13px; color:#555; word-break:break-all;"></div>
                         </div>
                     </div>
@@ -232,36 +232,36 @@
                 
                 <div id="categoriesPage" class="page">
                     <div class="admin-section">
-                        <h2>ржирждрзБржи ржХрзНржпрж╛ржЯрж╛ржЧрж░рж┐</h2>
-                        <input type="text" id="categoryName" placeholder="ржХрзНржпрж╛ржЯрж╛ржЧрж░рж┐рж░ ржирж╛ржо"><input type="text" id="categoryImageUrl" placeholder="ржХрзНржпрж╛ржЯрж╛ржЧрж░рж┐рж░ ржЫржмрж┐ URL">
-                        <button class="add-btn" onclick="addCategory()">ржпрзЛржЧ ржХрж░рзБржи</button>
-                        <h3 style="margin-top: 30px;">рж╕ржХрж▓ ржХрзНржпрж╛ржЯрж╛ржЧрж░рж┐</h3><div id="category-list"></div>
+                        <h2>নতুন ক্যাটাগরি</h2>
+                        <input type="text" id="categoryName" placeholder="ক্যাটাগরির নাম"><input type="text" id="categoryImageUrl" placeholder="ক্যাটাগরির ছবি URL">
+                        <button class="add-btn" onclick="addCategory()">যোগ করুন</button>
+                        <h3 style="margin-top: 30px;">সকল ক্যাটাগরি</h3><div id="category-list"></div>
                     </div>
                 </div>
                 <div id="productsPage" class="page">
                     <div class="admin-section">
-                        <h2>ржирждрзБржи ржкржгрзНржп</h2>
+                        <h2>নতুন পণ্য</h2>
                         <form id="productForm">
-                            <input type="text" id="productName" placeholder="ржкржгрзНржпрзЗрж░ ржирж╛ржо" required>
+                            <input type="text" id="productName" placeholder="পণ্যের নাম" required>
                             <select id="productCategory" required></select>
-                            <input type="number" id="productPrice" placeholder="ржмрж░рзНрждржорж╛ржи ржорзВрж▓рзНржп (рз│)" required>
-                            <input type="number" id="oldPrice" placeholder="ржкрзВрж░рзНржмрзЗрж░ ржорзВрж▓рзНржп (рз│)">
-                            <input type="number" id="discount" placeholder="ржбрж┐рж╕ржХрж╛ржЙржирзНржЯ %">
-                            <input type="text" id="imageUrl" placeholder="ржЫржмрж┐ URL" required>
-                            <input type="text" id="productLink" placeholder="ржкржгрзНржпрзЗрж░ рж▓рж┐ржВржХ (ржРржЪрзНржЫрж┐ржХ)">
-                            <button class="add-btn" type="submit">ржпрзЛржЧ ржХрж░рзБржи</button>
+                            <input type="number" id="productPrice" placeholder="বর্তমান মূল্য (৳)" required>
+                            <input type="number" id="oldPrice" placeholder="পূর্বের মূল্য (৳)">
+                            <input type="number" id="discount" placeholder="ডিসকাউন্ট %">
+                            <input type="text" id="imageUrl" placeholder="ছবি URL" required>
+                            <input type="text" id="productLink" placeholder="পণ্যের লিংক (ঐচ্ছিক)">
+                            <button class="add-btn" type="submit">যোগ করুন</button>
                         </form>
-                        <h3 style="margin-top: 30px;">рж╕ржХрж▓ ржкржгрзНржп</h3><div id="product-list"></div>
+                        <h3 style="margin-top: 30px;">সকল পণ্য</h3><div id="product-list"></div>
                     </div>
                 </div>
                 <div id="ordersPage" class="page">
                     <div class="admin-section">
-                        <h2>рж╕ржХрж▓ ржЕрж░рзНржбрж╛рж░</h2><div id="order-list"></div>
+                        <h2>সকল অর্ডার</h2><div id="order-list"></div>
                     </div>
                 </div>
                 <div id="usersPage" class="page">
                     <div class="admin-section">
-                        <h2>рж╕ржХрж▓ ржмрзНржпржмрж╣рж╛рж░ржХрж╛рж░рзА</h2><div id="user-list"></div>
+                        <h2>সকল ব্যবহারকারী</h2><div id="user-list"></div>
                     </div>
                 </div>
             </div>
@@ -271,7 +271,7 @@
     <div id="editModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 id="modalTitle">ржЖржЗржЯрзЗржо ржПржбрж┐ржЯ ржХрж░рзБржи</h2>
+                <h2 id="modalTitle">আইটেম এডিট করুন</h2>
                 <span class="close-btn" onclick="closeEditModal()">&times;</span>
             </div>
             <div id="modalBody"></div>
@@ -361,7 +361,7 @@
                 footerColor: document.getElementById('footerColor').value,
                 footerLogo1Url: document.getElementById('footerLogo1Url').value,
                 footerLogo2Url: document.getElementById('footerLogo2Url').value
-            }, { merge: true }).then(() => alert('рж╕рж╛ржзрж╛рж░ржг рж╕рзЗржЯрж┐ржВрж╕ рж╕рзЗржн рж╣ржпрж╝рзЗржЫрзЗ!')); 
+            }, { merge: true }).then(() => alert('সাধারণ সেটিংস সেভ হয়েছে!')); 
         }
 
         function saveContactSettings() { 
@@ -375,14 +375,14 @@
                 email: document.getElementById('contactEmail').value, emailIconUrl: document.getElementById('emailIconUrl').value,
                 address: document.getElementById('address').value,
                 addressIconUrl: document.getElementById('addressIconUrl').value
-            }, { merge: true }).then(() => alert('ржпрзЛржЧрж╛ржпрзЛржЧрзЗрж░ рждржерзНржп рж╕рзЗржн рж╣ржпрж╝рзЗржЫрзЗ!')); 
+            }, { merge: true }).then(() => alert('যোগাযোগের তথ্য সেভ হয়েছে!')); 
         }
 
         function addBanner() { 
             const newBannerUrl = document.getElementById('newBannerUrl').value; 
-            if (!newBannerUrl) return alert("ржжржпрж╝рж╛ ржХрж░рзЗ ржмрзНржпрж╛ржирж╛рж░рзЗрж░ URL ржжрж┐ржиред"); 
+            if (!newBannerUrl) return alert("দয়া করে ব্যানারের URL দিন।"); 
             db.collection('settings').doc('siteInfo').update({ bannerUrl: firebase.firestore.FieldValue.arrayUnion(newBannerUrl) }).then(() => { 
-                alert("ржмрзНржпрж╛ржирж╛рж░ рж╕ржлрж▓ржнрж╛ржмрзЗ ржпрзЛржЧ рж╣ржпрж╝рзЗржЫрзЗ!"); 
+                alert("ব্যানার সফলভাবে যোগ হয়েছে!"); 
                 document.getElementById('newBannerUrl').value = ''; 
             }).catch(error => { 
                 db.collection('settings').doc('siteInfo').set({ bannerUrl: [newBannerUrl] }, { merge: true }); 
@@ -390,8 +390,8 @@
         }
 
         function deleteBanner(bannerUrl) { 
-            if (!confirm("ржЖржкржирж┐ ржХрж┐ ржирж┐рж╢рзНржЪрж┐рждржнрж╛ржмрзЗ ржПржЗ ржмрзНржпрж╛ржирж╛рж░ржЯрж┐ ржорзБржЫрзЗ ржлрзЗрж▓рждрзЗ ржЪрж╛ржи?")) return; 
-            db.collection('settings').doc('siteInfo').update({ bannerUrl: firebase.firestore.FieldValue.arrayRemove(bannerUrl) }).then(() => alert("ржмрзНржпрж╛ржирж╛рж░ рж╕ржлрж▓ржнрж╛ржмрзЗ ржорзБржЫрзЗ ржлрзЗрж▓рж╛ рж╣ржпрж╝рзЗржЫрзЗ!")); 
+            if (!confirm("আপনি কি নিশ্চিতভাবে এই ব্যানারটি মুছে ফেলতে চান?")) return; 
+            db.collection('settings').doc('siteInfo').update({ bannerUrl: firebase.firestore.FieldValue.arrayRemove(bannerUrl) }).then(() => alert("ব্যানার সফলভাবে মুছে ফেলা হয়েছে!")); 
         }
 
         function loadSettings() {
@@ -428,9 +428,9 @@
             });
         }
 
-        /* ========== ржлрзНрж░рж┐ ржкрзНрж░рзЛржбрж╛ржХрзНржЯ ржлрж╛ржВрж╢ржирж╕ржорзВрж╣ ========== */
+        /* ========== ফ্রি প্রোডাক্ট ফাংশনসমূহ ========== */
 
-        // ржЫржмрж┐ ржкрзНрж░рж┐ржнрж┐ржЙ ржжрзЗржЦрж╛ржирзЛ
+        // ছবি প্রিভিউ দেখানো
         function previewFreeImage() {
             const url = document.getElementById('freeImageUrl').value.trim();
             const img = document.getElementById('freeImagePreview');
@@ -443,7 +443,7 @@
             }
         }
 
-        // ржлрзНрж░рж┐ ржкрзНрж░рзЛржбрж╛ржХрзНржЯ рж╕рзЗржн ржХрж░рж╛
+        // ফ্রি প্রোডাক্ট সেভ করা
         function saveFreeProductSettings() {
             const title = document.getElementById('freeTitle').value.trim();
             const imageUrl = document.getElementById('freeImageUrl').value.trim();
@@ -455,9 +455,9 @@
             const btnText = document.getElementById('freeBtnText').value.trim();
             const btnLink = document.getElementById('freeBtnLink').value.trim();
 
-            if (!title) return alert("ржжржпрж╝рж╛ ржХрж░рзЗ ржЯрж╛ржЗржЯрзЗрж▓ ржжрж┐ржиред");
-            if (!imageUrl) return alert("ржжржпрж╝рж╛ ржХрж░рзЗ ржкрзНрж░рзЛржбрж╛ржХрзНржЯрзЗрж░ ржЫржмрж┐рж░ URL ржжрж┐ржиред");
-            if (!btnLink) return alert("ржжржпрж╝рж╛ ржХрж░рзЗ ржмрж╛ржЯржирзЗрж░ рж▓рж┐ржВржХ ржжрж┐ржиред");
+            if (!title) return alert("দয়া করে টাইটেল দিন।");
+            if (!imageUrl) return alert("দয়া করে প্রোডাক্টের ছবির URL দিন।");
+            if (!btnLink) return alert("দয়া করে বাটনের লিংক দিন।");
 
             db.collection('settings').doc('freeProduct').set({
                 title: title,
@@ -470,18 +470,18 @@
                 btnText: btnText || "Share Now",
                 btnLink: btnLink
             }, { merge: true })
-            .then(() => alert('тЬЕ ржлрзНрж░рж┐ ржкрзНрж░рзЛржбрж╛ржХрзНржЯ рж╕ржлрж▓ржнрж╛ржмрзЗ рж╕рзЗржн рж╣ржпрж╝рзЗржЫрзЗ! ржорзВрж▓ ржУржпрж╝рзЗржмрж╕рж╛ржЗржЯрзЗ ржЖржкржбрзЗржЯ рж╣ржмрзЗред'))
-            .catch(err => alert('рж╕рзЗржн ржХрж░рждрзЗ рж╕ржорж╕рзНржпрж╛ рж╣ржпрж╝рзЗржЫрзЗ: ' + err.message));
+            .then(() => alert('✅ ফ্রি প্রোডাক্ট সফলভাবে সেভ হয়েছে! মূল ওয়েবসাইটে আপডেট হবে।'))
+            .catch(err => alert('সেভ করতে সমস্যা হয়েছে: ' + err.message));
         }
 
-        // ржлрзНрж░рж┐ ржкрзНрж░рзЛржбрж╛ржХрзНржЯ ржбрж┐рж▓рж┐ржЯ ржХрж░рж╛
+        // ফ্রি প্রোডাক্ট ডিলিট করা
         function deleteFreeProductSettings() {
-            if (!confirm('тЪая╕П рж╕рждрж░рзНржХрждрж╛: ржЖржкржирж┐ ржХрж┐ ржирж┐рж╢рзНржЪрж┐ржд ржпрзЗ ржлрзНрж░рж┐ ржкрзНрж░рзЛржбрж╛ржХрзНржЯрзЗрж░ рж╕ржорзНржкрзВрж░рзНржг ржбрж╛ржЯрж╛ ржорзБржЫрзЗ ржлрзЗрж▓рждрзЗ ржЪрж╛ржи?\n\nржорзВрж▓ ржУржпрж╝рзЗржмрж╕рж╛ржЗржЯ ржерзЗржХрзЗ "ржлрзНрж░рж┐ ржЧрж┐ржлрзНржЯ" ржмрзНржпрж╛ржирж╛рж░ ржУ ржкрзЗржЬ ржЪрж▓рзЗ ржпрж╛ржмрзЗред')) return;
+            if (!confirm('⚠️ সতর্কতা: আপনি কি নিশ্চিত যে ফ্রি প্রোডাক্টের সম্পূর্ণ ডাটা মুছে ফেলতে চান?\n\nমূল ওয়েবসাইট থেকে "ফ্রি গিফ্ট" ব্যানার ও পেজ চলে যাবে।')) return;
             
             db.collection('settings').doc('freeProduct').delete()
             .then(() => {
-                alert('ЁЯЧСя╕П ржлрзНрж░рж┐ ржкрзНрж░рзЛржбрж╛ржХрзНржЯ рж╕ржлрж▓ржнрж╛ржмрзЗ ржбрж┐рж▓рж┐ржЯ рж╣ржпрж╝рзЗржЫрзЗ!');
-                // ржЗржиржкрзБржЯ ржлрж┐рж▓рзНржбржЧрзБрж▓рзЛ ржЦрж╛рж▓рж┐ ржХрж░рзЗ ржжрж┐ржи
+                alert('🗑️ ফ্রি প্রোডাক্ট সফলভাবে ডিলিট হয়েছে!');
+                // ইনপুট ফিল্ডগুলো খালি করে দিন
                 document.getElementById('freeTitle').value = '';
                 document.getElementById('freeImageUrl').value = '';
                 document.getElementById('freeClaimedText').value = '';
@@ -492,19 +492,19 @@
                 document.getElementById('freeBtnText').value = '';
                 document.getElementById('freeBtnLink').value = '';
                 document.getElementById('freeImagePreview').style.display = 'none';
-                document.getElementById('freeProductPreviewData').innerHTML = '<span style="color:#999;">ржХрзЛржирзЛ ржбрж╛ржЯрж╛ ржирзЗржЗ</span>';
+                document.getElementById('freeProductPreviewData').innerHTML = '<span style="color:#999;">কোনো ডাটা নেই</span>';
             })
-            .catch(err => alert('ржбрж┐рж▓рж┐ржЯ ржХрж░рждрзЗ рж╕ржорж╕рзНржпрж╛ рж╣ржпрж╝рзЗржЫрзЗ: ' + err.message));
+            .catch(err => alert('ডিলিট করতে সমস্যা হয়েছে: ' + err.message));
         }
 
-        // ржлрзНрж░рж┐ ржкрзНрж░рзЛржбрж╛ржХрзНржЯ рж▓рзЛржб ржУ ржкрзНрж░рж┐ржнрж┐ржЙ ржЖржкржбрзЗржЯ
+        // ফ্রি প্রোডাক্ট লোড ও প্রিভিউ আপডেট
         function loadFreeProductSettings() {
             db.collection('settings').doc('freeProduct').onSnapshot(doc => {
                 const previewDiv = document.getElementById('freeProductPreviewData');
                 if (doc.exists) {
                     const d = doc.data();
                     
-                    // ржЗржиржкрзБржЯ ржлрж┐рж▓рзНржбрзЗ ржнрзНржпрж╛рж▓рзБ ржмрж╕рж╛ржи
+                    // ইনপুট ফিল্ডে ভ্যালু বসান
                     document.getElementById('freeTitle').value = d.title || '';
                     document.getElementById('freeImageUrl').value = d.imageUrl || '';
                     document.getElementById('freeClaimedText').value = d.claimedText || '';
@@ -515,32 +515,32 @@
                     document.getElementById('freeBtnText').value = d.btnText || '';
                     document.getElementById('freeBtnLink').value = d.btnLink || '';
                     
-                    // ржЫржмрж┐ ржкрзНрж░рж┐ржнрж┐ржЙ
+                    // ছবি প্রিভিউ
                     if (d.imageUrl) {
                         const img = document.getElementById('freeImagePreview');
                         img.src = d.imageUrl;
                         img.style.display = 'block';
                     }
 
-                    // ржЯрзЗржХрзНрж╕ржЯ ржкрзНрж░рж┐ржнрж┐ржЙ
+                    // টেক্সট প্রিভিউ
                     previewDiv.innerHTML = `
-                        <div style="margin-bottom:8px;"><strong>ржЯрж╛ржЗржЯрзЗрж▓:</strong> ${d.title || 'ржирзЗржЗ'}</div>
-                        <div style="margin-bottom:8px;"><strong>ржЫржмрж┐:</strong> <a href="${d.imageUrl || '#'}" target="_blank" style="color:#007bff;">${d.imageUrl ? 'ржжрзЗржЦрзБржи тЖТ' : 'ржирзЗржЗ'}</a></div>
-                        <div style="margin-bottom:8px;"><strong>ржХрзНрж▓рзЗржЗржо ржЯрзЗржХрзНрж╕ржЯ:</strong> ${d.claimedText || 'ржирзЗржЗ'}</div>
-                        <div style="margin-bottom:8px;"><strong>ржЖрж╕рж▓ ржорзВрж▓рзНржп:</strong> рз│${d.originalPrice || '0'}</div>
-                        <div style="margin-bottom:8px;"><strong>ржХржорж╛ржирзЛ:</strong> рз│${d.amountCut || '0'}</div>
-                        <div style="margin-bottom:8px;"><strong>ржмрж╛ржХрж┐:</strong> рз│${d.amountRemaining || '0'}</div>
-                        <div style="margin-bottom:8px;"><strong>ржкрзНрж░ржЧрзНрж░рзЗрж╕:</strong> ${d.progressPercentage || '0'}%</div>
-                        <div style="margin-bottom:8px;"><strong>ржмрж╛ржЯржи ржЯрзЗржХрзНрж╕ржЯ:</strong> ${d.btnText || 'Share Now'}</div>
-                        <div><strong>ржмрж╛ржЯржи рж▓рж┐ржВржХ:</strong> <a href="${d.btnLink || '#'}" target="_blank" style="color:#007bff;">${d.btnLink || 'ржирзЗржЗ'}</a></div>
+                        <div style="margin-bottom:8px;"><strong>টাইটেল:</strong> ${d.title || 'নেই'}</div>
+                        <div style="margin-bottom:8px;"><strong>ছবি:</strong> <a href="${d.imageUrl || '#'}" target="_blank" style="color:#007bff;">${d.imageUrl ? 'দেখুন →' : 'নেই'}</a></div>
+                        <div style="margin-bottom:8px;"><strong>ক্লেইম টেক্সট:</strong> ${d.claimedText || 'নেই'}</div>
+                        <div style="margin-bottom:8px;"><strong>আসল মূল্য:</strong> ৳${d.originalPrice || '0'}</div>
+                        <div style="margin-bottom:8px;"><strong>কমানো:</strong> ৳${d.amountCut || '0'}</div>
+                        <div style="margin-bottom:8px;"><strong>বাকি:</strong> ৳${d.amountRemaining || '0'}</div>
+                        <div style="margin-bottom:8px;"><strong>প্রগ্রেস:</strong> ${d.progressPercentage || '0'}%</div>
+                        <div style="margin-bottom:8px;"><strong>বাটন টেক্সট:</strong> ${d.btnText || 'Share Now'}</div>
+                        <div><strong>বাটন লিংক:</strong> <a href="${d.btnLink || '#'}" target="_blank" style="color:#007bff;">${d.btnLink || 'নেই'}</a></div>
                     `;
                 } else {
-                    previewDiv.innerHTML = '<span style="color:#999;">ржХрзЛржирзЛ ржбрж╛ржЯрж╛ рж╕рзЗржн ржХрж░рж╛ рж╣ржпрж╝ржирж┐ред ржЙржкрж░рзЗ ржерзЗржХрзЗ ржирждрзБржи ржХрж░рзЗ рж╕рзЗржЯ ржХрж░рзБржиред</span>';
+                    previewDiv.innerHTML = '<span style="color:#999;">কোনো ডাটা সেভ করা হয়নি। উপরে থেকে নতুন করে সেট করুন।</span>';
                 }
             });
         }
         
-        /* ========== ржХрзНржпрж╛ржЯрж╛ржЧрж░рж┐ ржУ ржкрзНрж░рзЛржбрж╛ржХрзНржЯ ========== */
+        /* ========== ক্যাটাগরি ও প্রোডাক্ট ========== */
 
         function addCategory() { 
             const name = document.getElementById('categoryName').value; 
@@ -553,8 +553,8 @@
 
         function loadCategories() { 
             db.collection('categories').orderBy('name').onSnapshot(snapshot => { 
-                document.getElementById('category-list').innerHTML = snapshot.docs.map(doc => `<div class="list-item"><span>${doc.data().name}</span><div class="actions"><button class="action-btn edit-btn" onclick="openEditModal('categories', '${doc.id}')">ржПржбрж┐ржЯ</button><button class="action-btn delete-btn" onclick="deleteDoc('categories', '${doc.id}')">ржбрж┐рж▓рж┐ржЯ</button></div></div>`).join(''); 
-                document.getElementById('productCategory').innerHTML = '<option value="">-- ржХрзНржпрж╛ржЯрж╛ржЧрж░рж┐ --</option>' + snapshot.docs.map(doc => `<option value="${doc.data().name}">${doc.data().name}</option>`).join(''); 
+                document.getElementById('category-list').innerHTML = snapshot.docs.map(doc => `<div class="list-item"><span>${doc.data().name}</span><div class="actions"><button class="action-btn edit-btn" onclick="openEditModal('categories', '${doc.id}')">এডিট</button><button class="action-btn delete-btn" onclick="deleteDoc('categories', '${doc.id}')">ডিলিট</button></div></div>`).join(''); 
+                document.getElementById('productCategory').innerHTML = '<option value="">-- ক্যাটাগরি --</option>' + snapshot.docs.map(doc => `<option value="${doc.data().name}">${doc.data().name}</option>`).join(''); 
             }); 
         }
         
@@ -573,7 +573,7 @@
 
         function loadProducts() { 
             db.collection('products').orderBy('name').onSnapshot(snapshot => { 
-                document.getElementById('product-list').innerHTML = snapshot.docs.map(doc => `<div class="list-item"><span>${doc.data().name}</span><div class="actions"><button class="action-btn edit-btn" onclick="openEditModal('products', '${doc.id}')">ржПржбрж┐ржЯ</button><button class="action-btn delete-btn" onclick="deleteDoc('products', '${doc.id}')">ржбрж┐рж▓рж┐ржЯ</button></div></div>`).join(''); 
+                document.getElementById('product-list').innerHTML = snapshot.docs.map(doc => `<div class="list-item"><span>${doc.data().name}</span><div class="actions"><button class="action-btn edit-btn" onclick="openEditModal('products', '${doc.id}')">এডিট</button><button class="action-btn delete-btn" onclick="deleteDoc('products', '${doc.id}')">ডিলিট</button></div></div>`).join(''); 
             }); 
         }
         
@@ -581,7 +581,7 @@
             db.collection('orders').orderBy('orderDate', 'desc').onSnapshot(snapshot => { 
                 document.getElementById('order-list').innerHTML = snapshot.docs.map(doc => { 
                     const o = doc.data(); 
-                    return `<div class="list-item"><span>${o.customerName} - ${o.productName}</span><div class="actions"><select onchange="updateOrderStatus('${doc.id}', this.value)"><option ${o.status === 'Pending' ? 'selected' : ''}>Pending</option><option ${o.status === 'Shipped' ? 'selected' : ''}>Shipped</option><option ${o.status === 'Delivered' ? 'selected' : ''}>Delivered</option></select><button class="action-btn delete-btn" onclick="deleteDoc('orders', '${doc.id}')">ржбрж┐рж▓рж┐ржЯ</button></div></div>`; 
+                    return `<div class="list-item"><span>${o.customerName} - ${o.productName}</span><div class="actions"><select onchange="updateOrderStatus('${doc.id}', this.value)"><option ${o.status === 'Pending' ? 'selected' : ''}>Pending</option><option ${o.status === 'Shipped' ? 'selected' : ''}>Shipped</option><option ${o.status === 'Delivered' ? 'selected' : ''}>Delivered</option></select><button class="action-btn delete-btn" onclick="deleteDoc('orders', '${doc.id}')">ডিলিট</button></div></div>`; 
                 }).join(''); 
             }); 
         }
@@ -592,7 +592,7 @@
             db.collection('users').onSnapshot(snapshot => { 
                 document.getElementById('user-list').innerHTML = snapshot.docs.map(doc => { 
                     const u = doc.data(); 
-                    return `<div class="list-item"><span>${u.displayName} (${u.email})</span><div class="actions"><button class="action-btn block-btn ${u.isBlocked ? 'unblock' : ''}" onclick="toggleUserBlock('${doc.id}', ${u.isBlocked || false})">${u.isBlocked ? 'Unblock' : 'Block'}</button><button class="action-btn delete-btn" onclick="deleteDoc('users', '${doc.id}')">ржбрж┐рж▓рж┐ржЯ</button></div></div>`; 
+                    return `<div class="list-item"><span>${u.displayName} (${u.email})</span><div class="actions"><button class="action-btn block-btn ${u.isBlocked ? 'unblock' : ''}" onclick="toggleUserBlock('${doc.id}', ${u.isBlocked || false})">${u.isBlocked ? 'Unblock' : 'Block'}</button><button class="action-btn delete-btn" onclick="deleteDoc('users', '${doc.id}')">ডিলিট</button></div></div>`; 
                 }).join(''); 
             }); 
         }
@@ -600,22 +600,22 @@
         function toggleUserBlock(id, isCurrentlyBlocked) { db.collection('users').doc(id).update({ isBlocked: !isCurrentlyBlocked }); }
         
         function deleteDoc(collection, id) { 
-            if (confirm('ржЖржкржирж┐ ржХрж┐ ржирж┐рж╢рзНржЪрж┐ржд? ржПржЯрж┐ рж╕рзНржерж╛ржпрж╝рзАржнрж╛ржмрзЗ ржорзБржЫрзЗ ржлрзЗрж▓рж╛ рж╣ржмрзЗред')) db.collection(collection).doc(id).delete(); 
+            if (confirm('আপনি কি নিশ্চিত? এটি স্থায়ীভাবে মুছে ফেলা হবে।')) db.collection(collection).doc(id).delete(); 
         }
 
         function closeEditModal() { modal.style.display = "none"; modalBody.innerHTML = ""; }
         
         async function openEditModal(collection, docId) {
             const doc = await db.collection(collection).doc(docId).get();
-            if (!doc.exists) { alert("рждрзНрж░рзБржЯрж┐: ржбржХрзБржорзЗржирзНржЯ ржЦрзБржБржЬрзЗ ржкрж╛ржУржпрж╝рж╛ ржпрж╛ржпрж╝ржирж┐!"); return; }
+            if (!doc.exists) { alert("ত্রুটি: ডকুমেন্ট খুঁজে পাওয়া যায়নি!"); return; }
             const data = doc.data();
             let formHtml = '';
             if (collection === 'categories') {
-                modalTitle.innerText = "ржХрзНржпрж╛ржЯрж╛ржЧрж░рж┐ ржПржбрж┐ржЯ ржХрж░рзБржи";
-                formHtml = `<label>ржХрзНржпрж╛ржЯрж╛ржЧрж░рж┐рж░ ржирж╛ржо:</label><input type="text" id="editCategoryName" value="${data.name}"><label>ржЫржмрж┐ URL:</label><input type="text" id="editCategoryImageUrl" value="${data.imageUrl}"><button onclick="saveChanges('${collection}', '${docId}')">рж╕рзЗржн ржХрж░рзБржи</button>`;
+                modalTitle.innerText = "ক্যাটাগরি এডিট করুন";
+                formHtml = `<label>ক্যাটাগরির নাম:</label><input type="text" id="editCategoryName" value="${data.name}"><label>ছবি URL:</label><input type="text" id="editCategoryImageUrl" value="${data.imageUrl}"><button onclick="saveChanges('${collection}', '${docId}')">সেভ করুন</button>`;
             } else if (collection === 'products') {
-                modalTitle.innerText = "ржкржгрзНржп ржПржбрж┐ржЯ ржХрж░рзБржи";
-                formHtml = `<label>ржкржгрзНржпрзЗрж░ ржирж╛ржо:</label><input type="text" id="editProductName" value="${data.name}"><label>ржХрзНржпрж╛ржЯрж╛ржЧрж░рж┐:</label><select id="editProductCategory">${document.getElementById('productCategory').innerHTML}</select><label>ржмрж░рзНрждржорж╛ржи ржорзВрж▓рзНржп (рз│):</label><input type="number" id="editProductPrice" value="${data.price}"><label>ржкрзВрж░рзНржмрзЗрж░ ржорзВрж▓рзНржп (рз│):</label><input type="number" id="editOldPrice" value="${data.oldPrice || ''}"><label>ржбрж┐рж╕ржХрж╛ржЙржирзНржЯ %:</label><input type="number" id="editDiscount" value="${data.discount || ''}"><label>ржЫржмрж┐ URL:</label><input type="text" id="editImageUrl" value="${data.imageUrl}"><label>ржкржгрзНржпрзЗрж░ рж▓рж┐ржВржХ (ржРржЪрзНржЫрж┐ржХ):</label><input type="text" id="editProductLink" value="${data.link || ''}"><button onclick="saveChanges('${collection}', '${docId}')">рж╕рзЗржн ржХрж░рзБржи</button>`;
+                modalTitle.innerText = "পণ্য এডিট করুন";
+                formHtml = `<label>পণ্যের নাম:</label><input type="text" id="editProductName" value="${data.name}"><label>ক্যাটাগরি:</label><select id="editProductCategory">${document.getElementById('productCategory').innerHTML}</select><label>বর্তমান মূল্য (৳):</label><input type="number" id="editProductPrice" value="${data.price}"><label>পূর্বের মূল্য (৳):</label><input type="number" id="editOldPrice" value="${data.oldPrice || ''}"><label>ডিসকাউন্ট %:</label><input type="number" id="editDiscount" value="${data.discount || ''}"><label>ছবি URL:</label><input type="text" id="editImageUrl" value="${data.imageUrl}"><label>পণ্যের লিংক (ঐচ্ছিক):</label><input type="text" id="editProductLink" value="${data.link || ''}"><button onclick="saveChanges('${collection}', '${docId}')">সেভ করুন</button>`;
             }
             modalBody.innerHTML = formHtml;
             if (collection === 'products') { document.getElementById('editProductCategory').value = data.category; }
@@ -638,10 +638,10 @@
                 }; 
             }
             db.collection(collection).doc(docId).update(updatedData).then(() => { 
-                alert("рж╕ржлрж▓ржнрж╛ржмрзЗ ржЖржкржбрзЗржЯ ржХрж░рж╛ рж╣ржпрж╝рзЗржЫрзЗ!"); 
+                alert("সফলভাবে আপডেট করা হয়েছে!"); 
                 closeEditModal(); 
             }).catch(err => { 
-                alert("ржЖржкржбрзЗржЯ ржХрж░рж╛рж░ рж╕ржоржпрж╝ рждрзНрж░рзБржЯрж┐ рж╣ржпрж╝рзЗржЫрзЗ: " + err.message); 
+                alert("আপডেট করার সময় ত্রুটি হয়েছে: " + err.message); 
             });
         }
 
